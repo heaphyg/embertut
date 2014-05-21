@@ -1,1 +1,1 @@
-window.Todos = Ember.Application.create(); // This will create a new instance of Ember.Application and make it available as a variable named Todos within your browser's JavaScript environment.
+window.Todos = Ember.Application.create(); // This will create a new instance of Ember.Application and make it available as a variable named Todos within your browser's JavaScript environment. An instance of Ember.Application is the starting point for every Ember application. It helps to instantiate, initialize and coordinate the many objects that make up your app.
