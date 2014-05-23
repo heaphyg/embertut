@@ -4,3 +4,6 @@ Todos.ApplicationAdapter = DS.FixtureAdapter.extend(); // this extend method is 
 
 //Fixtures are a way to put sample data into an application before connecting the application to long-term persistence. (clarify long-term persistence)
 // Adapters are responsible for communicating with a source of data for your application. Typically this will be a web service API, but in this case we are using an adapter designed to load fixture data:
+
+
+// in the index.html file what is with the :completed in  <li {{bind-attr class="isCompleted:completed"}}>
