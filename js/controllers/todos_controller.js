@@ -28,8 +28,6 @@ Todos.TodosController = Ember.ArrayController.extend ({
   },
 
   remaining: function() { // study how and where this gets called
-    console.log(this)
-    console.log("hello")
     return this.filterBy('isCompleted', false).get('length');
 
   }.property('@each.isCompleted'), // what is with this???
