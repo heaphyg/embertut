@@ -25,7 +25,19 @@ Todos.TodosController = Ember.ArrayController.extend ({
       //save the new model
       todo.save();
     }
-  }
+  },
+
+  remaining: function() { // study how and where this gets called
+    console.log(this)
+    console.log("hello")
+    return this.filterBy('isCompleted', false).get('length');
+
+  }.property('@each.isCompleted'), // what is with this???
+ 
+  inflection: function() {
+    var remaining = this.get('remaining');
+    return remaining ===  1 ? 'todo' : 'todos';
+  }.property('remaining')
 });
 
 // how does the enter button trigger the action established above?? -- the enter key must be a built in default
