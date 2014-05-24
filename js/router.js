@@ -74,19 +74,19 @@ Todos.TodosActiveRoute = Ember.Route.extend({
   //the renderTemplate method and calling render ourselves with the specific 
   //template and controller options.
 
-  renderTemplate: function(controller) {
+  renderTemplate: function(controller) { // find out how this controller part works
     this.render('todos/index', {controller: controller});
   }
 });
 
-Todos.TodosCompletedRoutes = Ember.Route.extend ({  
-  model: function() {
+Todos.TodosCompletedRoute = Ember.Route.extend({  
+  model: function() {  // how does thes the data from this model function get sent to the render template down below
     return this.store.filter('todo', function(todo) {
       return todo.get('isCompleted');
     });
   },
 
-  renderTemplate: function () {
-      this.render("todos/index", {controller: controller});
+  renderTemplate: function (controller) { 
+      this.render('todos/index', {controller: controller});
   }
 });
