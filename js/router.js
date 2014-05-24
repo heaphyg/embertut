@@ -1,6 +1,7 @@
 Todos.Router.map(function() {
   this.resource('todos', { path: '/' }, function () {
     // additional child raoutes will go here later -- added well into the tut
+    this.route('active');
   });
 }); // This will tell Ember.js to detect when the application's URL matches '/' and to render the todos template.
 // make sure you understand what is defining the todo template. see line 9 of the html (data-template-name="todos")
@@ -57,3 +58,22 @@ Todos.TodosIndexRoute = Ember.Route.extend({
 //the result of the model method of TodosIndexRoute, which 
 //indicates that the model for this route is the same model as
 // for the TodosRoute.
+
+Todos.TodosActiveRoute = Ember.Route.extend({
+  //The model data for this route is the collection of todos whose isCompleted property is false. 
+  model: function (){
+    return this.store.filter('todo', function(todo) {
+      return !todo.get('isCompleted');
+    });
+  },
+
+  //Normally transitioning into a new route changes the template rendered 
+  //into the parent {{outlet}}, but in this case we'd like to reuse the 
+  //existing todos/index template. We can accomplish this by implementing 
+  //the renderTemplate method and calling render ourselves with the specific 
+  //template and controller options.
+
+  renderTemplate: function(controller) {
+    this.render('todos/index', {controller: controller});
+  }
+});
