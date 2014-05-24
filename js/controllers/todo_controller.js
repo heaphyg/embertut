@@ -2,11 +2,22 @@ Todos.TodoController = Ember.ObjectController.extend({
   actions: {
     editTodo: function() {
       this.set('isEditing', true);
+      console.log("isEditing is being set to true")
+    },
+
+    acceptChanges: function() {
+      this.set('isEditing', false);
+      console.log("now its set to false")
+      if (Ember.isEmpty(this.get('model.title'))) {
+        this.send('removeTodo'); // remove must be built into Ember.js -- I also find it intersting that we are checking if Ember isEmpty?
+      } else {
+        this.get('model').save();
+      }
     }
   },
 
   isEditing: false,
-  
+
   isComplete: function(key, value){
     var model = this.get('model');
 
