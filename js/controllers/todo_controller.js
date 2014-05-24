@@ -1,5 +1,5 @@
 Todos.TodoController = Ember.ObjectController.extend({
-  actions: {
+  actions: { // so action is actuall a handlebars helper thats why <button {{action "removeTodo"}} class="destroy"></button> works
     editTodo: function() {
       this.set('isEditing', true);
       console.log("isEditing is being set to true")
@@ -8,11 +8,17 @@ Todos.TodoController = Ember.ObjectController.extend({
     acceptChanges: function() {
       this.set('isEditing', false);
       console.log("now its set to false")
-      if (Ember.isEmpty(this.get('model.title'))) {
-        this.send('removeTodo'); // remove must be built into Ember.js -- I also find it intersting that we are checking if Ember isEmpty?
+      if (Ember.isEmpty(this.get('model.title'))) {  // I also find it intersting that we are checking if Ember isEmpty?
+        this.send('removeTodo'); 
       } else {
         this.get('model').save();
       }
+    },
+
+    removeTodo: function() {
+      var todo = this.get('model');
+      todo.deleteRecord(); // Because the todo is no longer part of the collection of all todos, its <li> element in the page will be automatically removed for us.
+      todo.save(); // persisting the change (the deletion)
     }
   },
 
