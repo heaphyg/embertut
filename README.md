@@ -1,0 +1,1 @@
+I am currently going throught the Ember.js tutorial and making lots and lots of comments along the way.
