@@ -7,3 +7,9 @@ Todos.ApplicationAdapter = DS.FixtureAdapter.extend(); // this extend method is 
 
 
 // in the index.html file what is with the :completed in  <li {{bind-attr class="isCompleted:completed"}}>
+
+
+// inde.html note -- The {{outlet}} Handlebars helper 
+//designates an area of a template that will dynamically update as we 
+// transition between routes.  -- this is all refering to the nest todostemplate 
+//that we made and the outlet we stuck right above that nested template

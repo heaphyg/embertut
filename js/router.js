@@ -1,5 +1,7 @@
 Todos.Router.map(function() {
-  this.resource('todos', { path: '/' });
+  this.resource('todos', { path: '/' }, function () {
+    // additional child raoutes will go here later -- added well into the tut
+  });
 }); // This will tell Ember.js to detect when the application's URL matches '/' and to render the todos template.
 // make sure you understand what is defining the todo template. see line 9 of the html (data-template-name="todos")
 // do all templates go into the same html file??
@@ -40,3 +42,18 @@ Todos.TodosRoute = Ember.Route.extend({
 //controller does not know which views are presenting its properties.
 
 // TEMPLATE gets its properties from CONTOLLER -- CONTROLLER decorates a model (creates an instance of?)
+
+Todos.TodosIndexRoute = Ember.Route.extend({
+  model: function() {
+    return this.modelFor('todos');
+  }
+});
+
+//When the application loads at the url '/' Ember.js will 
+//enter the todos route and render the todos template as
+// before. It will also transition into the todos.index route 
+//and fill the {{outlet}} in the todos template with the 
+//todos/index template. The model data for this template is 
+//the result of the model method of TodosIndexRoute, which 
+//indicates that the model for this route is the same model as
+// for the TodosRoute.
