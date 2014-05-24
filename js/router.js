@@ -1,7 +1,8 @@
 Todos.Router.map(function() {
   this.resource('todos', { path: '/' }, function () {
-    // additional child raoutes will go here later -- added well into the tut
+    // additional child raoutes (paths -- routes are corresponding routes are below) will go here later -- added well into the tut
     this.route('active');
+    this.route('completed'); 
   });
 }); // This will tell Ember.js to detect when the application's URL matches '/' and to render the todos template.
 // make sure you understand what is defining the todo template. see line 9 of the html (data-template-name="todos")
@@ -75,5 +76,17 @@ Todos.TodosActiveRoute = Ember.Route.extend({
 
   renderTemplate: function(controller) {
     this.render('todos/index', {controller: controller});
+  }
+});
+
+Todos.TodosCompletedRoutes = Ember.Route.extend ({  
+  model: function() {
+    return this.store.filter('todo', function(todo) {
+      return todo.get('isCompleted');
+    });
+  },
+
+  renderTemplate: function () {
+      this.render("todos/index", {controller: controller});
   }
 });
